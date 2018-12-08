@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using ConsumptionCalculator.Forms;
 
 namespace ConsumptionCalculator {
 	static class Program {
@@ -7,7 +8,7 @@ namespace ConsumptionCalculator {
 		static void Main() {
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run();
+			Application.Run(new MainForm());
 		}
 	}
 }
