@@ -26,7 +26,7 @@ namespace ConsumptionCalculator.Forms {
 
 		private void ReadProcessors() {
 			ExcelWorksheet Worksheet = ExcelPackage.Workbook.Worksheets[1];
-			for (int i = 1; i < Worksheet.Cells.Rows; ++i) {
+			for (int i = 2; i < Worksheet.Cells.Rows; ++i) {
 				if (Worksheet.Cells[i, 1].Value == null)
 					break;
 
@@ -73,7 +73,7 @@ namespace ConsumptionCalculator.Forms {
 
 		private void ReadVideoCards() {
 			ExcelWorksheet Worksheet = ExcelPackage.Workbook.Worksheets[2];
-			for (int i = 1; i < Worksheet.Cells.Rows; ++i) {
+			for (int i = 2; i < Worksheet.Cells.Rows; ++i) {
 				if (Worksheet.Cells[i, 1].Value == null)
 					break;
 
