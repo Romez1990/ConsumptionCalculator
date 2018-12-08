@@ -1,4 +1,6 @@
-﻿namespace ConsumptionCalculator.Forms {
+﻿using ConsumptionCalculator.Properties;
+
+namespace ConsumptionCalculator.Forms {
 	partial class MainForm {
 		private System.ComponentModel.IContainer components = null;
 
@@ -43,7 +45,7 @@
 			this.ProcessorManufacturer_ComboBox.Name = "ProcessorManufacturer_ComboBox";
 			this.ProcessorManufacturer_ComboBox.Size = new System.Drawing.Size(121, 32);
 			this.ProcessorManufacturer_ComboBox.TabIndex = 0;
-			this.ProcessorManufacturer_ComboBox.Text = "Выбрать";
+			this.ProcessorManufacturer_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
 			this.ProcessorManufacturer_ComboBox.SelectedIndexChanged += new System.EventHandler(this.ProcessorManufacturer_ComboBox_SelectedIndexChanged);
 			// 
 			// Socket_ComboBox
@@ -53,7 +55,7 @@
 			this.Socket_ComboBox.Name = "Socket_ComboBox";
 			this.Socket_ComboBox.Size = new System.Drawing.Size(121, 32);
 			this.Socket_ComboBox.TabIndex = 1;
-			this.Socket_ComboBox.Text = "Выбрать";
+			this.Socket_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
 			this.Socket_ComboBox.SelectedIndexChanged += new System.EventHandler(this.Socket_ComboBox_SelectedIndexChanged);
 			// 
 			// ProcessorModel_ComboBox
@@ -63,7 +65,7 @@
 			this.ProcessorModel_ComboBox.Name = "ProcessorModel_ComboBox";
 			this.ProcessorModel_ComboBox.Size = new System.Drawing.Size(121, 32);
 			this.ProcessorModel_ComboBox.TabIndex = 2;
-			this.ProcessorModel_ComboBox.Text = "Выбрать";
+			this.ProcessorModel_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
 			// 
 			// VideoCardManufacturer_ComboBox
 			// 
@@ -72,7 +74,7 @@
 			this.VideoCardManufacturer_ComboBox.Name = "VideoCardManufacturer_ComboBox";
 			this.VideoCardManufacturer_ComboBox.Size = new System.Drawing.Size(121, 32);
 			this.VideoCardManufacturer_ComboBox.TabIndex = 3;
-			this.VideoCardManufacturer_ComboBox.Text = "Выбрать";
+			this.VideoCardManufacturer_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
 			this.VideoCardManufacturer_ComboBox.SelectedIndexChanged += new System.EventHandler(this.VideoCardManufacturer_ComboBox_SelectedIndexChanged);
 			// 
 			// label1
@@ -118,7 +120,7 @@
 			this.VideoCardModel_ComboBox.Name = "VideoCardModel_ComboBox";
 			this.VideoCardModel_ComboBox.Size = new System.Drawing.Size(121, 32);
 			this.VideoCardModel_ComboBox.TabIndex = 10;
-			this.VideoCardModel_ComboBox.Text = "Выбрать";
+			this.VideoCardModel_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
 			// 
 			// label5
 			// 
