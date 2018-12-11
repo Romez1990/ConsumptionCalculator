@@ -2,6 +2,7 @@
 using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
@@ -16,6 +17,8 @@ namespace ConsumptionCalculator.Forms {
 
 			ReadVideoCards();
 			SetVideoCardManufacturers();
+
+			ReadPowerSupplies();
 		}
 
 		private readonly ExcelPackage ExcelPackage = new ExcelPackage(new FileInfo("Database.xlsx"));
@@ -102,6 +105,25 @@ namespace ConsumptionCalculator.Forms {
 
 		#endregion
 
+		#region Power supplies
+
+		private readonly List<PowerSupply> PowerSupplies = new List<PowerSupply>();
+
+		private void ReadPowerSupplies() {
+			ExcelWorksheet Worksheet = ExcelPackage.Workbook.Worksheets[3];
+			for (int i = 2; i < Worksheet.Cells.Rows; ++i) {
+				if (Worksheet.Cells[i, 1].Value == null)
+					break;
+
+				PowerSupplies.Add(new PowerSupply(
+					int.Parse(Worksheet.Cells[i, 1].Value.ToString()),
+					Worksheet.Cells[i, 2].Value.ToString()
+				));
+			}
+		}
+
+		#endregion
+
 		#region Calculating
 
 		private void Calculate_Button_Click(object sender, EventArgs e) {
@@ -135,10 +157,24 @@ namespace ConsumptionCalculator.Forms {
 										  (int)RAM_NumericUpDown.Value * 4 +
 										  (int)Ventilator_NumericUpDown.Value * 15;
 
-			MessageBox.Show($"Общее энергопотребление - {TotalConsumption} Вт", "Результаты расчёта", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			foreach (PowerSupply PowerSupply in PowerSupplies) {
+				if (TotalConsumption < PowerSupply.MaxPower) {
+					PowerSupply_LinkLabel.Text = "Ссылка на блок питания";
+					PowerSupply_LinkLabel.Links.Add(new LinkLabel.Link { LinkData = PowerSupply.Link });
+					break;
+				}
+			}
+
+			Response_Label.Text = $"Общее энергопотребление - {TotalConsumption} Вт.\n" +
+				"В соответствии с этим мы подобрали для Вас блок питания необходимой мощности:";
 		}
 
 		#endregion
+
+		private void PowerSupply_LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+			if (e.Link.LinkData is string link)
+				Process.Start(link);
+		}
 
 	}
 }

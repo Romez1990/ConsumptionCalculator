@@ -36,6 +36,7 @@ namespace ConsumptionCalculator.Forms {
 			this.RAM_NumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.Ventilator_NumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.Response_Label = new System.Windows.Forms.Label();
+			this.PowerSupply_LinkLabel = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.VideoCardQuantity_NumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.S_ATA_NumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.RAM_NumericUpDown)).BeginInit();
@@ -210,6 +211,7 @@ namespace ConsumptionCalculator.Forms {
 			// Calculate_Button
 			// 
 			this.Calculate_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.Calculate_Button.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.Calculate_Button.Location = new System.Drawing.Point(493, 302);
 			this.Calculate_Button.Name = "Calculate_Button";
 			this.Calculate_Button.Size = new System.Drawing.Size(196, 57);
@@ -308,19 +310,28 @@ namespace ConsumptionCalculator.Forms {
 			// 
 			// Response_Label
 			// 
-			this.Response_Label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+			this.Response_Label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Response_Label.Location = new System.Drawing.Point(709, 42);
 			this.Response_Label.Name = "Response_Label";
-			this.Response_Label.Size = new System.Drawing.Size(285, 314);
+			this.Response_Label.Size = new System.Drawing.Size(397, 80);
 			this.Response_Label.TabIndex = 29;
+			// 
+			// PowerSupply_LinkLabel
+			// 
+			this.PowerSupply_LinkLabel.AutoSize = true;
+			this.PowerSupply_LinkLabel.Location = new System.Drawing.Point(713, 121);
+			this.PowerSupply_LinkLabel.Name = "PowerSupply_LinkLabel";
+			this.PowerSupply_LinkLabel.Size = new System.Drawing.Size(0, 24);
+			this.PowerSupply_LinkLabel.TabIndex = 30;
+			this.PowerSupply_LinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PowerSupply_LinkLabel_LinkClicked);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1006, 371);
+			this.ClientSize = new System.Drawing.Size(1118, 371);
+			this.Controls.Add(this.PowerSupply_LinkLabel);
 			this.Controls.Add(this.Response_Label);
 			this.Controls.Add(this.Ventilator_NumericUpDown);
 			this.Controls.Add(this.RAM_NumericUpDown);
@@ -346,7 +357,9 @@ namespace ConsumptionCalculator.Forms {
 			this.Controls.Add(this.Socket_ComboBox);
 			this.Controls.Add(this.ProcessorManufacturer_ComboBox);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Margin = new System.Windows.Forms.Padding(6);
+			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			((System.ComponentModel.ISupportInitialize)(this.VideoCardQuantity_NumericUpDown)).EndInit();
@@ -382,5 +395,6 @@ namespace ConsumptionCalculator.Forms {
 		private System.Windows.Forms.NumericUpDown RAM_NumericUpDown;
 		private System.Windows.Forms.NumericUpDown Ventilator_NumericUpDown;
 		private System.Windows.Forms.Label Response_Label;
+		private System.Windows.Forms.LinkLabel PowerSupply_LinkLabel;
 	}
 }
