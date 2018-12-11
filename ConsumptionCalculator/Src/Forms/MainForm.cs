@@ -12,6 +12,8 @@ namespace ConsumptionCalculator.Forms {
 		public MainForm() {
 			InitializeComponent();
 
+			ReadDatabase();
+
 			ReadProcessors();
 			SetProcessorManufacturers();
 
@@ -21,7 +23,15 @@ namespace ConsumptionCalculator.Forms {
 			ReadPowerSupplies();
 		}
 
-		private readonly ExcelPackage ExcelPackage = new ExcelPackage(new FileInfo("Database.xlsx"));
+		#region Read database
+
+		private ExcelPackage ExcelPackage;
+
+		private void ReadDatabase() {
+			ExcelPackage = new ExcelPackage(new FileInfo("Database.xlsx"));
+		}
+
+		#endregion
 
 		#region Processors
 
