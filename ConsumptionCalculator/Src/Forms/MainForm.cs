@@ -1,9 +1,9 @@
-﻿using OfficeOpenXml;
+﻿using ConsumptionCalculator.Properties;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using ConsumptionCalculator.Properties;
 
 namespace ConsumptionCalculator.Forms {
 	public partial class MainForm : Form {
@@ -129,7 +129,12 @@ namespace ConsumptionCalculator.Forms {
 				}
 			}
 
-			int TotalConsumption = ProcessorConsumption + VideoCardConsumption;
+			int TotalConsumption = ProcessorConsumption +
+										  VideoCardConsumption +
+										  (int)S_ATA_NumericUpDown.Value * 15 +
+										  (int)RAM_NumericUpDown.Value * 4 +
+										  (int)Ventilator_NumericUpDown.Value * 15;
+
 			MessageBox.Show($"Общее энергопотребление - {TotalConsumption} Вт", "Результаты расчёта", MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
