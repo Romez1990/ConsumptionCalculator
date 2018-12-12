@@ -1,18 +1,25 @@
-﻿using ConsumptionCalculator.Properties;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 
-namespace ConsumptionCalculator.Forms {
-	public partial class MainForm : Form {
+namespace ConsumptionCalculator.Form {
+	public partial class MainForm : System.Windows.Forms.Form {
 
 		public MainForm() {
 			InitializeComponent();
+			Load += OnLoad;
+		}
 
-			ReadDatabase();
+		#region Read database
+
+		private void OnLoad(object sender, EventArgs e) {
+			if (!ReadDatabase("Database.xlsx")) {
+				Application.Exit();
+				return;
+			}
 
 			ReadProcessors();
 			SetProcessorManufacturers();
@@ -23,12 +30,17 @@ namespace ConsumptionCalculator.Forms {
 			ReadPowerSupplies();
 		}
 
-		#region Read database
-
 		private ExcelPackage ExcelPackage;
 
-		private void ReadDatabase() {
-			ExcelPackage = new ExcelPackage(new FileInfo("Database.xlsx"));
+		private bool ReadDatabase(string DatabaseText) {
+			FileInfo FileInfo = new FileInfo(DatabaseText);
+			if (FileInfo.Exists) {
+				ExcelPackage = new ExcelPackage(FileInfo);
+				return true;
+			}
+
+			MessageBox.Show("Файл Database.xlsx не найден", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
 
 		#endregion
@@ -59,9 +71,9 @@ namespace ConsumptionCalculator.Forms {
 		}
 
 		private void ProcessorManufacturer_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-			ProcessorModel_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
+			ProcessorModel_ComboBox.SelectedIndex = -1;
 			ProcessorModel_ComboBox.Items.Clear();
-			Socket_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
+			Socket_ComboBox.SelectedIndex = -1;
 			Socket_ComboBox.Items.Clear();
 			foreach (Processor Processor in Processors)
 				if (ProcessorManufacturer_ComboBox.Text == Processor.Manufacturer)
@@ -70,7 +82,7 @@ namespace ConsumptionCalculator.Forms {
 		}
 
 		private void Socket_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-			ProcessorModel_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
+			ProcessorModel_ComboBox.SelectedIndex = -1;
 			ProcessorModel_ComboBox.Items.Clear();
 			foreach (Processor Processor in Processors)
 				if (Socket_ComboBox.Text == Processor.Socket)
@@ -105,7 +117,7 @@ namespace ConsumptionCalculator.Forms {
 		}
 
 		private void VideoCardManufacturer_ComboBox_SelectedIndexChanged(object sender, EventArgs e) {
-			VideoCardModel_ComboBox.Text = Resources.MainForm_ComboBox_DefaultValue;
+			VideoCardModel_ComboBox.SelectedIndex = -1;
 			VideoCardModel_ComboBox.Items.Clear();
 			foreach (VideoCard VideoCard in VideoCards)
 				if (VideoCardManufacturer_ComboBox.Text == VideoCard.Manufacturer)
@@ -167,10 +179,10 @@ namespace ConsumptionCalculator.Forms {
 										  (int)RAM_NumericUpDown.Value * 4 +
 										  (int)Ventilator_NumericUpDown.Value * 15;
 
+			PowerSupply_LinkLabel.Text = "Ссылка на блок питания";
 			foreach (PowerSupply PowerSupply in PowerSupplies) {
 				if (TotalConsumption < PowerSupply.MaxPower) {
-					PowerSupply_LinkLabel.Text = "Ссылка на блок питания";
-					PowerSupply_LinkLabel.Links.Add(new LinkLabel.Link { LinkData = PowerSupply.Link });
+					PowerSupply_LinkLabel.Links[0].LinkData = PowerSupply.Link;
 					break;
 				}
 			}
@@ -182,8 +194,9 @@ namespace ConsumptionCalculator.Forms {
 		#endregion
 
 		private void PowerSupply_LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-			if (e.Link.LinkData is string link)
-				Process.Start(link);
+			string Link = e.Link.LinkData as string;
+			if (Link != null)
+				Process.Start(Link);
 		}
 
 	}

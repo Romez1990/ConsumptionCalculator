@@ -3,5 +3,5 @@
 # ======================= #
 /.vs
 /*/bin/*/*
-!/*/bin/*/Database.xlsx
+!/*/bin/Debug/Database.xlsx
 /*/obj/

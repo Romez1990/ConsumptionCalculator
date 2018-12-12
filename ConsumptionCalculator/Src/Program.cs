@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using ConsumptionCalculator.Forms;
+using ConsumptionCalculator.Form;
 
 namespace ConsumptionCalculator {
 	static class Program {

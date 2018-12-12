@@ -1,6 +1,4 @@
-﻿using ConsumptionCalculator.Properties;
-
-namespace ConsumptionCalculator.Forms {
+﻿namespace ConsumptionCalculator.Form {
 	partial class MainForm {
 		private System.ComponentModel.IContainer components = null;
 
@@ -362,6 +360,7 @@ namespace ConsumptionCalculator.Forms {
 			this.MaximizeBox = false;
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Consumption Calculator";
 			((System.ComponentModel.ISupportInitialize)(this.VideoCardQuantity_NumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.S_ATA_NumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.RAM_NumericUpDown)).EndInit();
