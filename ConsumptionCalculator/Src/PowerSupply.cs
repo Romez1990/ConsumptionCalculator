@@ -2,11 +2,11 @@
 	struct PowerSupply {
 
 		public int MaxPower;
-		public string Link;
+		public string[] Links;
 
-		public PowerSupply(int MaxPower, string Link) {
+		public PowerSupply(int MaxPower, params string[] Links) {
 			this.MaxPower = MaxPower;
-			this.Link = Link;
+			this.Links = Links;
 		}
 
 	}

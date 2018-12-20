@@ -34,7 +34,9 @@
 			this.RAM_NumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.Ventilator_NumericUpDown = new System.Windows.Forms.NumericUpDown();
 			this.Response_Label = new System.Windows.Forms.Label();
-			this.PowerSupply_LinkLabel = new System.Windows.Forms.LinkLabel();
+			this.PowerSupply_LinkLabel1 = new System.Windows.Forms.LinkLabel();
+			this.PowerSupply_LinkLabel2 = new System.Windows.Forms.LinkLabel();
+			this.PowerSupply_LinkLabel3 = new System.Windows.Forms.LinkLabel();
 			((System.ComponentModel.ISupportInitialize)(this.VideoCardQuantity_NumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.S_ATA_NumericUpDown)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.RAM_NumericUpDown)).BeginInit();
@@ -312,24 +314,52 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.Response_Label.Location = new System.Drawing.Point(709, 42);
 			this.Response_Label.Name = "Response_Label";
-			this.Response_Label.Size = new System.Drawing.Size(397, 80);
+			this.Response_Label.Size = new System.Drawing.Size(397, 100);
 			this.Response_Label.TabIndex = 29;
+			this.Response_Label.Text = "Общее энергопотребление - 450 Вт.\r\nВ соответствии с этим мы подобрали для Вас бло" +
+    "к питания необходимой мощности в нескольких магазинах:";
 			// 
-			// PowerSupply_LinkLabel
+			// PowerSupply_LinkLabel1
 			// 
-			this.PowerSupply_LinkLabel.AutoSize = true;
-			this.PowerSupply_LinkLabel.Location = new System.Drawing.Point(713, 121);
-			this.PowerSupply_LinkLabel.Name = "PowerSupply_LinkLabel";
-			this.PowerSupply_LinkLabel.Size = new System.Drawing.Size(0, 24);
-			this.PowerSupply_LinkLabel.TabIndex = 30;
-			this.PowerSupply_LinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PowerSupply_LinkLabel_LinkClicked);
+			this.PowerSupply_LinkLabel1.AutoSize = true;
+			this.PowerSupply_LinkLabel1.Location = new System.Drawing.Point(713, 142);
+			this.PowerSupply_LinkLabel1.Name = "PowerSupply_LinkLabel1";
+			this.PowerSupply_LinkLabel1.Size = new System.Drawing.Size(102, 24);
+			this.PowerSupply_LinkLabel1.TabIndex = 30;
+			this.PowerSupply_LinkLabel1.TabStop = true;
+			this.PowerSupply_LinkLabel1.Text = "Магазин 1";
+			this.PowerSupply_LinkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PowerSupply_LinkLabel_LinkClicked);
+			// 
+			// PowerSupply_LinkLabel2
+			// 
+			this.PowerSupply_LinkLabel2.AutoSize = true;
+			this.PowerSupply_LinkLabel2.Location = new System.Drawing.Point(713, 173);
+			this.PowerSupply_LinkLabel2.Name = "PowerSupply_LinkLabel2";
+			this.PowerSupply_LinkLabel2.Size = new System.Drawing.Size(102, 24);
+			this.PowerSupply_LinkLabel2.TabIndex = 31;
+			this.PowerSupply_LinkLabel2.TabStop = true;
+			this.PowerSupply_LinkLabel2.Text = "Магазин 2";
+			this.PowerSupply_LinkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PowerSupply_LinkLabel_LinkClicked);
+			// 
+			// PowerSupply_LinkLabel3
+			// 
+			this.PowerSupply_LinkLabel3.AutoSize = true;
+			this.PowerSupply_LinkLabel3.Location = new System.Drawing.Point(713, 206);
+			this.PowerSupply_LinkLabel3.Name = "PowerSupply_LinkLabel3";
+			this.PowerSupply_LinkLabel3.Size = new System.Drawing.Size(102, 24);
+			this.PowerSupply_LinkLabel3.TabIndex = 32;
+			this.PowerSupply_LinkLabel3.TabStop = true;
+			this.PowerSupply_LinkLabel3.Text = "Магазин 3";
+			this.PowerSupply_LinkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.PowerSupply_LinkLabel_LinkClicked);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(1118, 371);
-			this.Controls.Add(this.PowerSupply_LinkLabel);
+			this.Controls.Add(this.PowerSupply_LinkLabel3);
+			this.Controls.Add(this.PowerSupply_LinkLabel2);
+			this.Controls.Add(this.PowerSupply_LinkLabel1);
 			this.Controls.Add(this.Response_Label);
 			this.Controls.Add(this.Ventilator_NumericUpDown);
 			this.Controls.Add(this.RAM_NumericUpDown);
@@ -361,6 +391,7 @@
 			this.Name = "MainForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Consumption Calculator";
+			this.Load += new System.EventHandler(this.MainForm_Load);
 			((System.ComponentModel.ISupportInitialize)(this.VideoCardQuantity_NumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.S_ATA_NumericUpDown)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.RAM_NumericUpDown)).EndInit();
@@ -394,6 +425,8 @@
 		private System.Windows.Forms.NumericUpDown RAM_NumericUpDown;
 		private System.Windows.Forms.NumericUpDown Ventilator_NumericUpDown;
 		private System.Windows.Forms.Label Response_Label;
-		private System.Windows.Forms.LinkLabel PowerSupply_LinkLabel;
+		private System.Windows.Forms.LinkLabel PowerSupply_LinkLabel1;
+		private System.Windows.Forms.LinkLabel PowerSupply_LinkLabel2;
+		private System.Windows.Forms.LinkLabel PowerSupply_LinkLabel3;
 	}
 }

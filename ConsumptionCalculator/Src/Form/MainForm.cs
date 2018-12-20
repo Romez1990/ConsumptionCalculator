@@ -10,12 +10,15 @@ namespace ConsumptionCalculator.Form {
 
 		public MainForm() {
 			InitializeComponent();
-			Load += OnLoad;
+			Response_Label.Text = string.Empty;
+			PowerSupply_LinkLabel1.Text = string.Empty;
+			PowerSupply_LinkLabel2.Text = string.Empty;
+			PowerSupply_LinkLabel3.Text = string.Empty;
 		}
 
 		#region Read database
 
-		private void OnLoad(object sender, EventArgs e) {
+		private void MainForm_Load(object sender, EventArgs e) {
 			if (!ReadDatabase("Database.xlsx")) {
 				Application.Exit();
 				return;
@@ -28,7 +31,7 @@ namespace ConsumptionCalculator.Form {
 			SetVideoCardManufacturers();
 
 			ReadPowerSupplies();
-		}
+			}
 
 		private ExcelPackage ExcelPackage;
 
@@ -56,10 +59,10 @@ namespace ConsumptionCalculator.Form {
 					break;
 
 				Processors.Add(new Processor(
-					Worksheet.Cells[i, 1].Value.ToString(),
-					Worksheet.Cells[i, 2].Value.ToString(),
-					Worksheet.Cells[i, 3].Value.ToString(),
-					int.Parse(Worksheet.Cells[i, 4].Value.ToString())
+					Worksheet.Cells[i, 1].Value?.ToString(),
+					Worksheet.Cells[i, 2].Value?.ToString(),
+					Worksheet.Cells[i, 3].Value?.ToString(),
+					int.Parse(Worksheet.Cells[i, 4].Value?.ToString())
 				));
 			}
 		}
@@ -103,9 +106,9 @@ namespace ConsumptionCalculator.Form {
 					break;
 
 				VideoCards.Add(new VideoCard(
-					Worksheet.Cells[i, 1].Value.ToString(),
-					Worksheet.Cells[i, 2].Value.ToString(),
-					int.Parse(Worksheet.Cells[i, 3].Value.ToString())
+					Worksheet.Cells[i, 1].Value?.ToString(),
+					Worksheet.Cells[i, 2].Value?.ToString(),
+					int.Parse(Worksheet.Cells[i, 3].Value?.ToString())
 				));
 			}
 		}
@@ -139,7 +142,9 @@ namespace ConsumptionCalculator.Form {
 
 				PowerSupplies.Add(new PowerSupply(
 					int.Parse(Worksheet.Cells[i, 1].Value.ToString()),
-					Worksheet.Cells[i, 2].Value.ToString()
+					Worksheet.Cells[i, 2].Value?.ToString(),
+					Worksheet.Cells[i, 3].Value?.ToString(),
+					Worksheet.Cells[i, 4].Value?.ToString()
 				));
 			}
 		}
@@ -179,10 +184,14 @@ namespace ConsumptionCalculator.Form {
 										  (int)RAM_NumericUpDown.Value * 4 +
 										  (int)Ventilator_NumericUpDown.Value * 15;
 
-			PowerSupply_LinkLabel.Text = "Ссылка на блок питания";
 			foreach (PowerSupply PowerSupply in PowerSupplies) {
 				if (TotalConsumption < PowerSupply.MaxPower) {
-					PowerSupply_LinkLabel.Links[0].LinkData = PowerSupply.Link;
+					PowerSupply_LinkLabel1.Links[0].LinkData = PowerSupply.Links[0];
+					PowerSupply_LinkLabel1.Text = "Магазин 1";
+					PowerSupply_LinkLabel2.Links[0].LinkData = PowerSupply.Links[1];
+					PowerSupply_LinkLabel2.Text = "Магазин 2";
+					PowerSupply_LinkLabel3.Links[0].LinkData = PowerSupply.Links[2];
+					PowerSupply_LinkLabel3.Text = "Магазин 3";
 					break;
 				}
 			}
